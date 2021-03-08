@@ -9,3 +9,5 @@ frozenlake/logs/QLearning/events.out.tfevents.1589635207.Chads-MacBook-Pro.local
 frozenlake/logs/QLearning/events.out.tfevents.1589635303.Chads-MacBook-Pro.local.2228.5.v2
 frozenlake/logs/QLearning/events.out.tfevents.1589635315.Chads-MacBook-Pro.local.2240.5.v2
 frozenlake/logs/SARSA/events.out.tfevents.1589546417.Chads-MacBook-Pro.local.3045.5.v2
+cartpole/logs
+frozenlake/logs

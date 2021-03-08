@@ -21,5 +21,5 @@ class SARSA:
     def train(self, s_curr, a_curr, r, s_next, a_next):
         q_curr = self.q_table[s_curr, a_curr]
         q_next = self.q_table[s_next, a_next]
-        print(self.q_table[s_curr])
-        self.q_table[s_curr, a_curr] = q_curr + self.lr * (r + (self.gamma * q_next) - q_next)
+        # print(self.q_table[s_curr])
+        self.q_table[s_curr, a_curr] = q_curr + self.lr * (r + (self.gamma * q_next) - q_curr)
