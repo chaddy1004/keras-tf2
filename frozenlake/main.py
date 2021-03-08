@@ -4,6 +4,8 @@ import tensorflow as tf
 import os
 from frozenlake.agents.sarsa import SARSA
 from frozenlake.agents.q_learning import QLearning
+
+
 def main(agent_type, episodes, exp_name):
     logdir = os.path.join("logs", exp_name)
     os.makedirs(logdir, exist_ok=True)
@@ -36,7 +38,6 @@ def main(agent_type, episodes, exp_name):
                 with writer.as_default():
                     tf.summary.scalar("reward", r, step)
 
-
             a_next = agent.get_action(s_next)
             agent.train(s_curr, a_curr, r, s_next, a_next)
             s_curr = s_next
@@ -47,7 +48,7 @@ def main(agent_type, episodes, exp_name):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--agent", type=str, default="QLearning", help="agent type")
-    ap.add_argument("--exp_name", type=str, default="QLearning", help="exp_name")
+    ap.add_argument("--exp_name", type=str, default="SARSA", help="exp_name")
     ap.add_argument("--episodes", type=int, default=100000, help="number of episodes to run")
     args = vars(ap.parse_args())
     main(agent_type=args["agent"], episodes=args["episodes"], exp_name=args["exp_name"])

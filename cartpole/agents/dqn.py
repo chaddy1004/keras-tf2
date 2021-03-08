@@ -8,7 +8,7 @@ sample = namedtuple('sample', ['s_curr', 'a_curr', 'reward', 's_next', 'done'])
 
 
 class DQN:
-    def __init__(self, states, actions):
+    def __init__(self, states, n_actions):
         self.replay_size = 1024
         self.experience_replay = deque(maxlen=self.replay_size)
         self.epsilon = 0.1

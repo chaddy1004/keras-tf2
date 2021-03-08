@@ -2,23 +2,20 @@ import gym
 import argparse
 import tensorflow as tf
 import os
-from agents.dqn import DQN
+from cartpole.agents.dqn import DQN
 import numpy as np
 from collections import namedtuple
 import random
-
-
-
 
 def main(agent_type, episodes, exp_name):
     logdir = os.path.join("logs", exp_name)
     os.makedirs(logdir, exist_ok=True)
     writer = tf.summary.create_file_writer(logdir)
     env = gym.make('CartPole-v1')
-    states = env.observation_space.shape[0] #shape returns a tuple
-    actions = env.action_space.n
+    states = env.observation_space.shape[0]  # shape returns a tuple
+    n_actions = env.action_space.n
     if agent_type == "DQN":
-        agent = DQN(states=states, actions=actions)
+        agent = DQN(states=states, n_actions=n_actions)
     else:
         raise NotImplementedError
     warmup_ep = 0
@@ -59,7 +56,7 @@ def main(agent_type, episodes, exp_name):
 
             if done:
                 score = score if score == 500 else score + 100
-                print(f"ep:{ep-warmup_ep}:################Goal Reached###################", score)
+                print(f"ep:{ep - warmup_ep}:################Goal Reached###################", score)
 
                 with writer.as_default():
                     tf.summary.scalar("reward", r, ep)
